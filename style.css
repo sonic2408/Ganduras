@@ -1,0 +1,307 @@
+/* Общие стили и сброс */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: #fff; /* Светлый текст по умолчанию */
+    background-color: #0d1a26; /* Темный фон для контраста с горами */
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+a {
+    color: #f7a944; /* Акцентный цвет (золотисто-оранжевый) */
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #e5902d;
+}
+
+ul {
+    list-style: none;
+}
+
+/* Шапка и Навигация */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 50px;
+    overflow: hidden;
+}
+
+.hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+    /* Градиент для затемнения нижней части и лучшей читаемости текста */
+    background-image: linear-gradient(to top, rgba(13, 26, 38, 0.9) 0%, rgba(13, 26, 38, 0.2) 60%, rgba(13, 26, 38, 0.1) 100%), var(--background-image-url);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    color: #fff;
+}
+
+.logo {
+    font-family: 'Oswald', sans-serif;
+    font-size: 2em;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links a {
+    color: #fff;
+    font-size: 1.05em;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.nav-links a:hover {
+    color: #f7a944;
+}
+
+.btn-link {
+    padding: 5px 10px;
+    border: 1px solid #f7a944;
+    border-radius: 4px;
+}
+
+/* Главный контент */
+.hero-content {
+    text-align: center;
+    margin-top: auto; /* Прижимаем к низу */
+}
+
+.hero-content h1 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 6em;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    letter-spacing: 5px;
+}
+
+.tagline {
+    font-size: 1.5em;
+    font-style: italic;
+    font-weight: 400;
+}
+
+/* Секция Туров */
+.tours-section {
+    padding: 80px 0;
+    color: #fff;
+}
+
+.tour-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    margin-bottom: 100px;
+    align-items: center;
+}
+
+/* Обратный порядок для второго тура */
+.tour-item.reverse {
+    grid-template-columns: 1fr 1fr;
+}
+
+.tour-item.reverse .tour-text {
+    order: 2;
+    text-align: right;
+}
+
+.tour-item.reverse .tour-image {
+    order: 1;
+}
+
+.tour-number {
+    font-family: 'Oswald', sans-serif;
+    font-size: 8em;
+    color: rgba(255, 255, 255, 0.1); /* Полупрозрачный большой номер */
+    position: absolute;
+    left: -50px;
+    line-height: 0.8;
+    z-index: 0;
+}
+
+.tour-item.reverse .tour-number {
+    left: auto;
+    right: -50px;
+}
+
+.tour-text {
+    position: relative;
+    padding-left: 50px;
+    z-index: 1;
+}
+
+.tour-item.reverse .tour-text {
+    padding-left: 0;
+    padding-right: 50px;
+}
+
+.tour-text h2 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 2.5em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    color: #f7a944;
+}
+
+.tour-text p {
+    margin-bottom: 20px;
+}
+
+.tour-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.price {
+    font-size: 1.2em;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.more-link {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.tour-image {
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Футер */
+.footer {
+    background-color: #071017;
+    padding: 50px 0;
+    color: rgba(255, 255, 255, 0.7);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.footer-col h3 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.2em;
+    color: #f7a944;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer-col ul {
+    padding-left: 0;
+}
+
+.footer-col li {
+    margin-bottom: 10px;
+    font-size: 0.9em;
+}
+
+.footer-col li, .footer-col p {
+    opacity: 0.8;
+}
+
+.footer-col a {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.phone-number {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #fff;
+    margin: 5px 0 20px;
+}
+
+.cookie-notice {
+    font-size: 0.75em;
+    margin-top: 30px;
+    opacity: 0.5;
+}
+
+/* Адаптивность для небольших экранов */
+@media (max-width: 900px) {
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-links {
+        gap: 15px;
+    }
+
+    .hero-content h1 {
+        font-size: 4em;
+    }
+
+    .tour-item, .tour-item.reverse {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .tour-item.reverse .tour-text {
+        order: 1;
+        text-align: left;
+    }
+
+    .tour-item.reverse .tour-image {
+        order: 2;
+    }
+
+    .tour-number {
+        font-size: 6em;
+        left: 0;
+    }
+
+    .tour-item.reverse .tour-number {
+        right: 0;
+    }
+    
+    .tour-text, .tour-item.reverse .tour-text {
+        padding: 0;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+}
