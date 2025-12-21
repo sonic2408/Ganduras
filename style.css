@@ -1,136 +1,288 @@
-/* Общие стили и сброс */
+:root {
+    --color-bg-main: #0d1a26;
+    --color-bg-panel: #071017;
+    --color-text-light: #fff;
+    --color-accent: #f7a944;
+    --color-accent-hover: #e5902d;
+    --font-main: 'Montserrat', sans-serif;
+    --font-titles: 'Oswald', sans-serif;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
 body {
-    font-family: 'Montserrat', sans-serif;
-    color: #fff; /* Светлый текст по умолчанию */
-    background-color: #0d1a26; /* Темный фон для контраста с горами */
-    line-height: 1.6;
+    font-family: var(--font-main);
+    color: var(--color-text-light);
+    background-color: var(--color-bg-main);
+    line-height: 1.7;
+    font-size: 16px;
 }
 
 .container {
-    width: 90%;
-    max-width: 1200px;
+    width: 85%;
+    max-width: 1100px;
     margin: 0 auto;
 }
 
 a {
-    color: #f7a944; /* Акцентный цвет (золотисто-оранжевый) */
     text-decoration: none;
-    transition: color 0.3s;
-}
-
-a:hover {
-    color: #e5902d;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
 ul {
     list-style: none;
 }
 
-/* Шапка и Навигация */
-.hero-section {
-    position: relative;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding-bottom: 50px;
-    overflow: hidden;
+h1, h2, h3, .logo {
+    font-family: var(--font-titles);
+    text-transform: uppercase;
+    font-weight: 700;
 }
 
-.hero-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    z-index: -1;
-    /* Градиент для затемнения нижней части и лучшей читаемости текста */
-    background-image: linear-gradient(to top, rgba(13, 26, 38, 0.9) 0%, rgba(13, 26, 38, 0.2) 60%, rgba(13, 26, 38, 0.1) 100%), var(--background-image-url);
+.hero-section {
+    position: relative;
+    min-height: 100vh; 
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(to top, rgba(13, 26, 38, 1) 0%, rgba(13, 26, 38, 0.4) 60%, rgba(13, 26, 38, 0.3) 100%), 
+                url('logo.jpg') no-repeat center center/cover; 
+    padding-bottom: 80px;
 }
 
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 0;
-    color: #fff;
+    width: 100%;
+    padding: 30px 60px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
 }
 
 .logo {
-    font-family: 'Oswald', sans-serif;
-    font-size: 2em;
-    font-weight: 700;
-    letter-spacing: 2px;
+    font-size: 2.2em;
+    letter-spacing: 3px;
+    color: var(--color-text-light);
+    z-index: 101;
 }
 
 .nav-links {
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    background-color: var(--color-bg-panel);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    transform: translateX(100%);
+    transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+    z-index: 90;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.8);
+}
+
+.pulse-wrapper {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 60px;
+    opacity: 0;
+    transition: opacity 0.5s ease 0.3s;
+}
+
+.mountain-icon {
+    font-size: 3em;
+    color: #fff;
+    z-index: 2;
+    position: relative;
+}
+
+.pulse-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px solid var(--color-accent);
+    border-radius: 50%;
+    opacity: 0;
+    animation: pulse-effect 3s infinite linear;
+}
+
+.pulse-ring.delay {
+    animation-delay: 1.5s;
+}
+
+@keyframes pulse-effect {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+        border-width: 4px;
+    }
+    50% {
+        opacity: 1;
+        border-width: 2px;
+    }
+    100% {
+        transform: scale(1.8);
+        opacity: 0;
+        border-width: 0px;
+    }
+}
+
+.menu-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease 0.4s;
+}
+
+.separator {
+    width: 40px;
+    height: 2px;
+    background-color: var(--color-accent);
+    margin-bottom: 25px;
+}
+
+.menu-phone {
+    font-family: var(--font-titles);
+    font-size: 1.3em;
+    color: #fff !important;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+}
+
+.menu-socials {
     display: flex;
     gap: 25px;
 }
 
-.nav-links a {
-    color: #fff;
-    font-size: 1.05em;
-    font-weight: 500;
-    letter-spacing: 0.5px;
+.menu-socials a {
+    font-size: 1.8em;
+    color: rgba(255,255,255, 0.5);
+    transition: all 0.3s;
 }
 
-.nav-links a:hover {
-    color: #f7a944;
+.menu-socials a:hover {
+    color: var(--color-accent);
+    transform: scale(1.2);
 }
 
-.btn-link {
-    padding: 5px 10px;
-    border: 1px solid #f7a944;
-    border-radius: 4px;
+.nav-active {
+    transform: translateX(0%);
 }
 
-/* Главный контент */
+.nav-active .pulse-wrapper {
+    opacity: 1;
+}
+
+.nav-active .menu-footer {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.burger {
+    display: block;
+    cursor: pointer;
+    z-index: 101;
+}
+
+.burger div {
+    width: 30px;
+    height: 3px;
+    background-color: #fff;
+    margin: 6px;
+    transition: all 0.3s ease;
+}
+
+.toggle .line1 {
+    transform: rotate(-45deg) translate(-6px, 7px);
+    background-color: var(--color-accent);
+}
+.toggle .line2 {
+    opacity: 0;
+}
+.toggle .line3 {
+    transform: rotate(45deg) translate(-6px, -7px);
+    background-color: var(--color-accent);
+}
+
 .hero-content {
     text-align: center;
-    margin-top: auto; /* Прижимаем к низу */
+    margin-top: auto;
+    margin-bottom: auto;
+    z-index: 2;
 }
 
 .hero-content h1 {
-    font-family: 'Oswald', sans-serif;
-    font-size: 6em;
-    font-weight: 700;
-    text-transform: uppercase;
-    margin-bottom: 5px;
+    font-size: clamp(4em, 10vw, 7em);
+    margin-bottom: 10px;
     letter-spacing: 5px;
+    line-height: 1.1;
 }
 
 .tagline {
     font-size: 1.5em;
     font-style: italic;
     font-weight: 400;
+    margin-bottom: 40px;
+    opacity: 0.9;
 }
 
-/* Секция Туров */
+.btn-hero {
+    display: inline-block;
+    padding: 15px 40px;
+    background-color: var(--color-accent);
+    color: var(--color-bg-main);
+    font-family: var(--font-titles);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-radius: 4px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn-hero:hover {
+    background-color: var(--color-accent-hover);
+    transform: translateY(-3px);
+}
+
 .tours-section {
-    padding: 80px 0;
-    color: #fff;
+    padding: 120px 0;
 }
 
 .tour-item {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 50px;
-    margin-bottom: 100px;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    margin-bottom: 150px;
     align-items: center;
+    position: relative;
 }
 
-/* Обратный порядок для второго тура */
+.tour-item:last-child {
+    margin-bottom: 0;
+}
+
 .tour-item.reverse {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.2fr 1fr;
 }
 
 .tour-item.reverse .tour-text {
@@ -143,13 +295,15 @@ ul {
 }
 
 .tour-number {
-    font-family: 'Oswald', sans-serif;
-    font-size: 8em;
-    color: rgba(255, 255, 255, 0.1); /* Полупрозрачный большой номер */
+    font-family: var(--font-titles);
+    font-size: 10em;
+    color: rgba(255, 255, 255, 0.05);
     position: absolute;
+    top: -60px;
     left: -50px;
     line-height: 0.8;
     z-index: 0;
+    pointer-events: none;
 }
 
 .tour-item.reverse .tour-number {
@@ -159,149 +313,128 @@ ul {
 
 .tour-text {
     position: relative;
-    padding-left: 50px;
     z-index: 1;
 }
 
-.tour-item.reverse .tour-text {
-    padding-left: 0;
-    padding-right: 50px;
-}
-
 .tour-text h2 {
-    font-family: 'Oswald', sans-serif;
-    font-size: 2.5em;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-    color: #f7a944;
+    font-size: 2.8em;
+    margin-bottom: 25px;
+    color: var(--color-accent);
+    letter-spacing: 1px;
 }
 
 .tour-text p {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    opacity: 0.85;
+    font-size: 1.05em;
 }
 
 .tour-details {
     display: flex;
     flex-direction: column;
+    gap: 15px;
 }
 
 .price {
-    font-size: 1.2em;
+    font-family: var(--font-titles);
+    font-size: 1.5em;
     font-weight: 700;
-    color: #fff;
-    margin-bottom: 10px;
+    color: var(--color-text-light);
+}
+
+.price small {
+    font-size: 0.6em;
+    font-weight: 400;
+    opacity: 0.7;
+    margin-left: 5px;
 }
 
 .more-link {
+    color: var(--color-accent);
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
+    font-size: 0.9em;
+    display: inline-flex;
+    align-items: center;
+}
+
+.more-link:hover {
+    color: var(--color-accent-hover);
+    transform: translateX(5px);
 }
 
 .tour-image {
-    height: 400px;
+    height: 500px;
     background-size: cover;
     background-position: center;
-    border-radius: 8px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    transition: transform 0.5s ease;
 }
 
-/* Футер */
-.footer {
-    background-color: #071017;
-    padding: 50px 0;
-    color: rgba(255, 255, 255, 0.7);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+.tour-item:hover .tour-image {
+    transform: scale(1.02);
 }
 
-.footer-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
+@media (max-width: 1024px) {
+    .tour-item, .tour-item.reverse {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .tour-image {
+        height: 400px;
+        order: -1 !important;
+    }
+
+    .tour-text, .tour-item.reverse .tour-text {
+        text-align: left;
+        padding-left: 20px;
+    }
+
+    .tour-number {
+        font-size: 8em;
+        top: -40px;
+        left: 0;
+    }
+    .tour-item.reverse .tour-number {
+         right: auto; left: 0;
+    }
 }
 
-.footer-col h3 {
-    font-family: 'Oswald', sans-serif;
-    font-size: 1.2em;
-    color: #f7a944;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.footer-col ul {
-    padding-left: 0;
-}
-
-.footer-col li {
-    margin-bottom: 10px;
-    font-size: 0.9em;
-}
-
-.footer-col li, .footer-col p {
-    opacity: 0.8;
-}
-
-.footer-col a {
-    color: rgba(255, 255, 255, 0.7);
-}
-
-.phone-number {
-    font-size: 1.5em;
-    font-weight: 700;
-    color: #fff;
-    margin: 5px 0 20px;
-}
-
-.cookie-notice {
-    font-size: 0.75em;
-    margin-top: 30px;
-    opacity: 0.5;
-}
-
-/* Адаптивность для небольших экранов */
-@media (max-width: 900px) {
+@media (max-width: 768px) {
     .navbar {
-        flex-direction: column;
-        gap: 15px;
+        padding: 20px 30px;
     }
 
     .nav-links {
-        gap: 15px;
+        width: 100%;
+    }
+    
+    .hero-section {
+        background-position: center top;
     }
 
-    .hero-content h1 {
-        font-size: 4em;
+    .tagline {
+        font-size: 1.2em;
     }
 
-    .tour-item, .tour-item.reverse {
-        grid-template-columns: 1fr;
+    .tours-section {
+        padding: 80px 0;
+    }
+
+    .tour-item {
+        margin-bottom: 100px;
         gap: 30px;
     }
 
-    .tour-item.reverse .tour-text {
-        order: 1;
-        text-align: left;
-    }
-
-    .tour-item.reverse .tour-image {
-        order: 2;
+    .tour-text h2 {
+        font-size: 2em;
     }
 
     .tour-number {
         font-size: 6em;
-        left: 0;
-    }
-
-    .tour-item.reverse .tour-number {
-        right: 0;
-    }
-    
-    .tour-text, .tour-item.reverse .tour-text {
-        padding: 0;
-    }
-
-    .footer-grid {
-        grid-template-columns: 1fr;
+        top: -30px;
     }
 }
